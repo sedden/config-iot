@@ -13,4 +13,15 @@ services:
     build: ./opensensemap
     command: ["58d42511c877fb0011ad4597"]
     links:
-      - "mosquitto"
+    - "mosquitto"
+
+  homekit2mqtt:
+    build: ./homekit2mqtt/image
+    ports:
+      - "51826:51826"
+      - "51888:51888"
+    volumes:
+    - ./homekit2mqtt/data:/homekit2mqtt/data
+    - ./homekit2mqtt/config:/homekit2mqtt/config
+    links:
+    - "mosquitto"
