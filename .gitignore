@@ -1,4 +1,6 @@
 !.keep
 
+docker-compose.override.yml
+
 .idea/
 .vscode/
