@@ -22,6 +22,7 @@ def update(box_id):
         for topic, payload in topics.items():
             logging.info(f'Publishing {topic} {payload}')
             client.publish(topic, payload)
+            client.loop()
         client.disconnect()
     except Exception:
         logging.error(f'Error updating box: {box_id}')
@@ -35,7 +36,7 @@ def main():
     while 1:
         for box_id in args.box_id:
             update(box_id)
-            sleep(5 * 60)
+        sleep(5 * 60)
 
 
 if __name__ == '__main__':
