@@ -21,3 +21,8 @@ services:
     - ./homekit2mqtt/data:/homekit2mqtt/data
     - ./homekit2mqtt/config:/homekit2mqtt/config
     - /var/run/dbus:/var/run/dbus
+
+  mirobo:
+    build: ./mirobo
+    links:
+    - "mosquitto"
