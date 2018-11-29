@@ -26,11 +26,14 @@ def main():
     client.loop_start()
     client.connect('mosquitto', 1883, 60)
     while True:
-        status = vac.status()
-        consumable_status = vac.consumable_status()
-        client.publish(TOPICS['battery'], status.battery)
-        client.publish(TOPICS['sensor_dirt_hours'], int(consumable_status.sensor_dirty.seconds / 60 / 60))
-        client.publish(TOPICS['sensor_filter_hours'], int(consumable_status.filter.seconds / 60 / 60))
+        try:
+            status = vac.status()
+            consumable_status = vac.consumable_status()
+            client.publish(TOPICS['battery'], status.battery)
+            client.publish(TOPICS['sensor_dirt_hours'], float(consumable_status.sensor_dirty.seconds / 60 / 60))
+            client.publish(TOPICS['sensor_filter_hours'], float(consumable_status.filter.seconds / 60 / 60))
+        except:
+            logging.error("Error getting device status")
         sleep(5*60)
 
 if __name__ == '__main__':
