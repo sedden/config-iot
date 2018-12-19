@@ -26,3 +26,8 @@ services:
     build: ./mirobo
     links:
     - "mosquitto"
+
+  telegraf:
+    build: ./telegraf/image
+    volumes:
+      - ./telegraf/config:/etc/telegraf:ro

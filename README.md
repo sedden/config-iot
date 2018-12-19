@@ -26,3 +26,7 @@ Example `docker-compose.override.yml`:
         environment:
           - MIROBO_TOKEN=...
           - MIROBO_IP=...
+
+Create telegraf config file:
+
+    docker-compose run --rm telegraf config > telegraf/config/telegraf.conf
