@@ -29,5 +29,8 @@ services:
 
   telegraf:
     build: ./telegraf/image
+    links:
+    - "mosquitto"
     volumes:
-      - ./telegraf/config:/etc/telegraf:ro
+    - ./telegraf/config:/etc/telegraf:ro
+
