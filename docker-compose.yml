@@ -27,10 +27,20 @@ services:
     links:
     - "mosquitto"
 
+  influxdb:
+    build: ./influxdb/image
+    ports:
+    - "8086:8086"
+    volumes:
+    - ./influxdb/data:/var/lib/influxdb
+    - ./influxdb/config/influxdb.conf:/etc/influxdb/influxdb.conf:ro
+    - /etc/localtime:/etc/localtime:ro
+
   telegraf:
     build: ./telegraf/image
     links:
     - "mosquitto"
+    - "influxdb"
     volumes:
     - ./telegraf/config:/etc/telegraf:ro
 
