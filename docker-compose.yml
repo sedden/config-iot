@@ -44,3 +44,8 @@ services:
     volumes:
     - ./telegraf/config:/etc/telegraf:ro
 
+  miflora:
+    build: ./miflora/image
+    network_mode: host
+    volumes:
+    - ./miflora/config/config.ini:/usr/src/app/config.ini:ro
