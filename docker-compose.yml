@@ -26,6 +26,8 @@ services:
     build: ./mirobo
     links:
     - "mosquitto"
+    environment:
+    - MIROBO_IP=rockrobo
 
   influxdb:
     build: ./influxdb/image
